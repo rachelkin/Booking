@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './login.css',
 })
 export class Login {
+  user = ''
+  login(){
+    localStorage.setItem('user', JSON.stringify(this.user));
+  }
 
 }

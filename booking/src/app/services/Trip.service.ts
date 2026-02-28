@@ -5,44 +5,46 @@ import { Trip } from "../models/trip_model"
 
 @Injectable ({providedIn: 'root'})
 export class TripService{
-    private api = inject(ApiService);
-    private http = inject(HttpClient);
+  private api = inject(ApiService);
+  private http = inject(HttpClient);
   trips = signal<Trip[]>([]);    
 
-getAllTrips() {
-  this.http.get<Trip[]>(`${this.api.BASE_URL}/trips`)
-    .subscribe(data => {
-      this.trips.set(data);
-    });
+  getAllTrips() {
+    this.http.get<Trip[]>(`${this.api.BASE_URL}/trips`)
+      .subscribe(data => {
+        this.trips.set(data);
+      });
+  }
 
-}
-    getTripByID(idTrip:Number){
+  getTripByID(idTrip:Number){
         this.http.get<Trip[]>(`${this.api.BASE_URL}/trips?id=${idTrip}`)
         .subscribe(data=>{
             this.trips.set(data);
         });
-    }
-    postAddTrip(newTrip: Trip) {
+  }
+
+  postAddTrip(newTrip: Trip) {
         this.http.post<Trip>(`${this.api.BASE_URL}/trips`,newTrip)
         .subscribe(addedTrip => {
       this.trips.update(current => [...current, addedTrip]);
     });
- }
-   putTripByID(idTrip:number){
-    this.http.put<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`,idTrip)
-    .subscribe(putedTrip =>{
-        this.trips.update(current => 
-            current.map(Trip => Trip.id===putedTrip.id ? putedTrip:Trip)
-        );
-    });
-   }
-
-deleteTripByID(idTrip: number) {
-  this.http.delete<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`)
-    .subscribe(() => {
-      this.trips.update(current => current.filter(trip => trip.id !== idTrip));
+  }
+  
+ putTripByID(idTrip: string, updatedTrip: Trip) {
+  this.http.put<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`, updatedTrip)
+    .subscribe(putedTrip => {
+      this.trips.update(current =>
+        current.map(trip => trip.id === putedTrip.id ? putedTrip : trip)
+      );
     });
 }
+
+  deleteTripByID(idTrip: string) {
+    this.http.delete<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`)
+      .subscribe(() => {
+        this.trips.update(current => current.filter(trip => trip.id !== idTrip));
+      });
+  }
 }
 
 
