@@ -11,7 +11,7 @@ import { UserService } from '../../services/User.service';
 export class Home {
   private userService = inject(UserService);
   currentUser = this.userService.currentUser();
-  userName = this.currentUser?.name;
+  userName = this.currentUser?.name || "Unknown";
   
   logout() {
     this.userService.logout();
