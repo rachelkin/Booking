@@ -1,1 +1,13 @@
-<p>all-trips works!</p>
+<div class="allTrips">
+    <h1>The best value trips on the market!</h1>
+    @if(trips()){
+        @for(trip of trips(); track trip.id)
+        {
+            <app-trip-card [trip]=trip></app-trip-card>
+        }
+    }
+    @else{
+        <h1>sory... There are no tours to show.. Try again later and be the first to know!</h1>
+    }
+    
+</div>
