@@ -17,7 +17,13 @@
 
     <div class="trip-footer">
       <span class="trip-price">${{ trip()?.price }}</span>
-      <button class="book-btn">Book Now</button>
+      <button class="book-btn"> Viewing the trip</button>
     </div>
+    @if(isAdmin){
+         <div class="Admin_permissions">
+            <button (click)="deleteTrip()">delete</button>
+            <button>editing</button>
+         </div>
+    }   
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
+import { UserService } from '../../services/User.service';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,11 @@ import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
   styleUrl: './home.css',
 })
 export class Home {
-   private UserLoggedIn = localStorage.getItem('user');
-   userName = this.UserLoggedIn ? JSON.parse(this.UserLoggedIn).name : "Unknown";
+  private userService = inject(UserService);
+  currentUser = this.userService.currentUser();
+  userName = this.currentUser?.name;
+  
+  logout() {
+    this.userService.logout();
+  }
 }

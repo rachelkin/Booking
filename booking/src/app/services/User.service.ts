@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable ,signal} from "@angular/core";
+import { inject, Injectable, signal, computed } from "@angular/core";
+import { Router } from "@angular/router";
 import { ApiService } from "./Api.service";
 import { User } from "../models/user_model"
 
@@ -7,8 +8,32 @@ import { User } from "../models/user_model"
 export class UserService{
   private api = inject(ApiService);
   private http = inject(HttpClient);
+  private router = inject(Router);
+  
   users = signal<User[]>([]);
   user = signal<User | null>(null);
+  currentUser = signal<User | null>(null);
+  
+  constructor() {
+    this.loadCurrentUser();
+  }
+  
+  private loadCurrentUser() {
+    try {
+      const userJson = localStorage.getItem('user');
+      if (userJson) {
+        this.currentUser.set(JSON.parse(userJson));
+      }
+    } catch (error) {
+      console.error('Failed to load current user:', error);
+    }
+  }
+  
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUser.set(null);
+    this.router.navigate(['/login']);
+  }
   
   allUsers(){
     try{

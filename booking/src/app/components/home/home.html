@@ -4,7 +4,7 @@
         <div class="buttons">
             <button [routerLink]="'allTrips'" routerLinkActive="active-link">All Trips</button>
             <button [routerLink]="'myTrips'">My Trips</button>
-            <button [routerLink]="'/login'">Logout</button>
+            <button (click)="logout()">Logout</button>
         </div>
         
     </div>

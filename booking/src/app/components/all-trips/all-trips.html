@@ -1,13 +1,17 @@
 <div class="allTrips">
     <h1>The best value trips on the market!</h1>
-    @if(trips()){
+    <div class="addTrip">
+        @if(isAdmin){
+            <button (click)="addTrip()">Add a trip</button>
+            @if(canAddTtip()){
+                <app-add-trip></app-add-trip>
+            }
+        }
+    </div>
+    <div class="listTrips">
         @for(trip of trips(); track trip.id)
         {
             <app-trip-card [trip]=trip></app-trip-card>
         }
-    }
-    @else{
-        <h1>sory... There are no tours to show.. Try again later and be the first to know!</h1>
-    }
-    
+    </div>   
 </div>

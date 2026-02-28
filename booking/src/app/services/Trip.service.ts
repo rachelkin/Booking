@@ -30,7 +30,7 @@ export class TripService{
     });
   }
   
- putTripByID(idTrip: number, updatedTrip: Trip) {
+ putTripByID(idTrip: string, updatedTrip: Trip) {
   this.http.put<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`, updatedTrip)
     .subscribe(putedTrip => {
       this.trips.update(current =>
@@ -39,7 +39,7 @@ export class TripService{
     });
 }
 
-  deleteTripByID(idTrip: number) {
+  deleteTripByID(idTrip: string) {
     this.http.delete<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`)
       .subscribe(() => {
         this.trips.update(current => current.filter(trip => trip.id !== idTrip));
