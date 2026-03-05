@@ -1,0 +1,12 @@
+p{
+    color:red;
+    font-size: larger;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: oblique;
+    counter-reset: my-counter;
+    forced-color-adjust: preserve-parent-color;
+    background-color: lightsalmon;
+    background-size: contain;
+    border: aqua 6px solid;
+    border-radius: 0svb 0svb 0svb 0svb;
+}

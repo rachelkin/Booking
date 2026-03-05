@@ -6,12 +6,13 @@ import { AllTrips } from './components/all-trips/all-trips';
 import { MyTrips } from './components/my-trips/my-trips';
 import { Trip } from './components/trip/trip';
 import { App } from './app';
-import { NotFound } from './components/not-found/not-found';
+import { Error } from './components/error/error';
 
 export const routes: Routes = [
     {path:'', component : App},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
+    
     {
         path: 'home',
         component: Home,
@@ -28,5 +29,5 @@ export const routes: Routes = [
             },           
         ]
     },
-    {path: '**', component: NotFound}
+    {path: '**', component: Error}
 ];

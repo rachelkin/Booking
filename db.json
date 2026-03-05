@@ -27,6 +27,76 @@
       "email": "david@example.com",
       "password": "davidpass",
       "isAdmin": false
+    },
+    {
+      "id": "5",
+      "name": "Emma Davis",
+      "email": "emma@example.com",
+      "password": "emma456",
+      "isAdmin": false
+    },
+    {
+      "id": "6",
+      "name": "Frank Miller",
+      "email": "frank@example.com",
+      "password": "frank789",
+      "isAdmin": true
+    },
+    {
+      "id": "7",
+      "name": "Grace Lee",
+      "email": "grace@example.com",
+      "password": "grace111",
+      "isAdmin": false
+    },
+    {
+      "id": "8",
+      "name": "Henry Taylor",
+      "email": "henry@example.com",
+      "password": "henry222",
+      "isAdmin": false
+    },
+    {
+      "id": "9",
+      "name": "Ivy Anderson",
+      "email": "ivy@example.com",
+      "password": "ivy333",
+      "isAdmin": false
+    },
+    {
+      "id": "10",
+      "name": "Jack Thomas",
+      "email": "jack@example.com",
+      "password": "jack444",
+      "isAdmin": false
+    },
+    {
+      "id": "11",
+      "name": "Kate Martinez",
+      "email": "kate@example.com",
+      "password": "kate555",
+      "isAdmin": true
+    },
+    {
+      "id": "12",
+      "name": "Leo Garcia",
+      "email": "leo@example.com",
+      "password": "leo666",
+      "isAdmin": false
+    },
+    {
+      "id": "13",
+      "name": "Mia Rodriguez",
+      "email": "mia@example.com",
+      "password": "mia777",
+      "isAdmin": false
+    },
+    {
+      "id": "14",
+      "name": "Noah White",
+      "email": "noah@example.com",
+      "password": "noah888",
+      "isAdmin": false
     }
   ],
   "trips": [
@@ -129,6 +199,106 @@
       "price": 1500,
       "description": "Hagia Sophia, Blue Mosque, and Bosphorus cruise.",
       "image": "https://picsum.photos/id/1049/400/200"
+    },
+    {
+      "id": "11",
+      "name": "Berlin History Tour",
+      "destination": "Berlin, Germany",
+      "startDate": "2026-08-15",
+      "endDate": "2026-08-20",
+      "price": 1350,
+      "description": "Brandenburg Gate, Berlin Wall, and Museum Island.",
+      "image": "https://picsum.photos/id/1053/400/200"
+    },
+    {
+      "id": "12",
+      "name": "Dublin Adventure",
+      "destination": "Dublin, Ireland",
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-05",
+      "price": 1250,
+      "description": "Trinity College, Guinness Storehouse, and Temple Bar.",
+      "image": "https://picsum.photos/id/1057/400/200"
+    },
+    {
+      "id": "13",
+      "name": "Copenhagen Design",
+      "destination": "Copenhagen, Denmark",
+      "startDate": "2026-09-10",
+      "endDate": "2026-09-15",
+      "price": 1550,
+      "description": "Tivoli Gardens, Nyhavn harbor, and modern architecture.",
+      "image": "https://picsum.photos/id/1061/400/200"
+    },
+    {
+      "id": "14",
+      "name": "Budapest Thermal Baths",
+      "destination": "Budapest, Hungary",
+      "startDate": "2026-09-20",
+      "endDate": "2026-09-25",
+      "price": 1200,
+      "description": "Széchenyi Baths, Parliament Building, and Danube cruise.",
+      "image": "https://picsum.photos/id/1065/400/200"
+    },
+    {
+      "id": "15",
+      "name": "Edinburgh Castle Tour",
+      "destination": "Edinburgh, Scotland",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-06",
+      "price": 1400,
+      "description": "Edinburgh Castle, Royal Mile, and Scottish Highlands.",
+      "image": "https://picsum.photos/id/1069/400/200"
+    },
+    {
+      "id": "16",
+      "name": "Stockholm Archipelago",
+      "destination": "Stockholm, Sweden",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-15",
+      "price": 1500,
+      "description": "Vasa Museum, Gamla Stan, and island hopping.",
+      "image": "https://picsum.photos/id/1073/400/200"
+    },
+    {
+      "id": "17",
+      "name": "Brussels & Bruges",
+      "destination": "Brussels, Belgium",
+      "startDate": "2026-10-20",
+      "endDate": "2026-10-25",
+      "price": 1300,
+      "description": "Grand Place, Atomium, and medieval Bruges.",
+      "image": "https://picsum.photos/id/1077/400/200"
+    },
+    {
+      "id": "18",
+      "name": "Krakow Heritage",
+      "destination": "Krakow, Poland",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-06",
+      "price": 1100,
+      "description": "Wawel Castle, Main Market Square, and salt mines.",
+      "image": "https://picsum.photos/id/1081/400/200"
+    },
+    {
+      "id": "19",
+      "name": "Athens Ancient Sites",
+      "destination": "Athens, Greece",
+      "startDate": "2026-11-10",
+      "endDate": "2026-11-15",
+      "price": 1450,
+      "description": "Acropolis, Parthenon, and Ancient Agora.",
+      "image": "https://picsum.photos/id/1085/400/200"
+    },
+    {
+      "id": "20",
+      "name": "Zurich Alps Experience",
+      "destination": "Zurich, Switzerland",
+      "startDate": "2026-12-01",
+      "endDate": "2026-12-06",
+      "price": 1800,
+      "description": "Lake Zurich, Swiss Alps day trip, and Old Town.",
+      "image": "https://picsum.photos/id/1089/400/200"
     }
   ],
   "bookings": [
@@ -173,6 +343,66 @@
       "tripId": 1,
       "userId": 1,
       "people": 3
+    },
+    {
+      "id": "8",
+      "tripId": 11,
+      "userId": 5,
+      "people": 2
+    },
+    {
+      "id": "9",
+      "tripId": 12,
+      "userId": 6,
+      "people": 4
+    },
+    {
+      "id": "10",
+      "tripId": 13,
+      "userId": 7,
+      "people": 1
+    },
+    {
+      "id": "11",
+      "tripId": 14,
+      "userId": 8,
+      "people": 2
+    },
+    {
+      "id": "12",
+      "tripId": 15,
+      "userId": 9,
+      "people": 3
+    },
+    {
+      "id": "13",
+      "tripId": 16,
+      "userId": 10,
+      "people": 2
+    },
+    {
+      "id": "14",
+      "tripId": 17,
+      "userId": 11,
+      "people": 1
+    },
+    {
+      "id": "15",
+      "tripId": 18,
+      "userId": 12,
+      "people": 2
+    },
+    {
+      "id": "16",
+      "tripId": 19,
+      "userId": 13,
+      "people": 4
+    },
+    {
+      "id": "17",
+      "tripId": 20,
+      "userId": 14,
+      "people": 2
     }
   ]
 }
