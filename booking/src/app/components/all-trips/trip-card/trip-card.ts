@@ -2,10 +2,11 @@ import { Component, inject, input } from '@angular/core';
 import { Trip } from "../../../models/trip_model"
 import { UserService } from '../../../services/User.service';
 import { TripService } from '../../../services/Trip.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-trip-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './trip-card.html',
   styleUrl: './trip-card.css',
 })

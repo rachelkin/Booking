@@ -6,7 +6,7 @@ import { AddTrip } from './add-trip/add-trip';
 
 @Component({
   selector: 'app-all-trips',
-  imports: [TripCard,AddTrip],
+  imports: [TripCard, AddTrip],
   templateUrl: './all-trips.html',
   styleUrl: './all-trips.css',
 })
@@ -21,7 +21,6 @@ export class AllTrips implements OnInit {
 
   ngOnInit() {
     this.tripService.getAllTrips(); 
-    console.log(this.trips());
   }
   addTrip() {
     this.canAddTtip.update(val => !val);

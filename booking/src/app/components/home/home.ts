@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { UserService } from '../../services/User.service';
 
@@ -10,10 +10,11 @@ import { UserService } from '../../services/User.service';
 })
 export class Home {
   private userService = inject(UserService);
-  currentUser = this.userService.currentUser();
-  userName = this.currentUser?.name || "Unknown";
+  currentUser = this.userService.currentUser;
+  userName = this.currentUser()?.name || 'Guest';
   
   logout() {
     this.userService.logout();
+    
   }
 }

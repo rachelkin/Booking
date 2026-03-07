@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="loginPage">
+  <div class="loginContainer">
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Please login to your account</p>
+    
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <div class="formGroup">
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          [(ngModel)]="username" 
+          #usernameModel="ngModel"
+          name="username"
+          placeholder="Enter your username"
+          required>
+          @if(usernameModel.invalid && usernameModel.touched) {
+            <div class="error">Username is required</div>
+          }
+      </div>
+      
+      <div class="formGroup">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="password" 
+          #passwordModel="ngModel"
+          name="password"
+          placeholder="Enter your password"
+          required>
+          @if(passwordModel.invalid && passwordModel.touched) {
+            <div class="error">Password is required</div>
+          }
+      </div>
+      
+      <button type="submit" class="loginBtn" [disabled]="!loginForm.valid">Login</button>
+      @if(errorMessage()) {
+        <div class="error">{{ errorMessage() }}</div>
+      }
+    </form>
+  </div>
+</div>

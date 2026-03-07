@@ -13,6 +13,7 @@ export class UserService{
   users = signal<User[]>([]);
   user = signal<User | null>(null);
   currentUser = signal<User | null>(null);
+  loginError = signal<string>('');
   
   constructor() {
     this.loadCurrentUser();
@@ -28,7 +29,32 @@ export class UserService{
       console.error('Failed to load current user:', error);
     }
   }
-  
+login(username: string, password: string) {
+    this.loginError.set('');
+    try {
+      this.http.get<User[]>(`${this.api.BASE_URL}/users?name=${username}&password=${password}`)
+        .subscribe({
+          next: (data) => {
+            if (data.length > 0) {
+              localStorage.setItem('user', JSON.stringify(data[0]));
+              this.currentUser.set(data[0]);
+              this.router.navigate(['/home/allTrips']);
+            } else {
+              this.loginError.set('Incorrect username or password.');
+            }
+          },
+          error: (error) => {
+            console.error('Failed to login:', error);
+            this.loginError.set('Login failed. Please try again.');
+          }
+        });
+    } catch (error) {
+      console.error('Error during login:', error);
+      this.loginError.set('An error occurred. Please try again.');
+    }
+   
+  }
+
   logout() {
     localStorage.removeItem('user');
     this.currentUser.set(null);
@@ -54,7 +80,7 @@ export class UserService{
 
   userById(idUser: string){
     try{
-      this.http.get<User[]>(`${this.api.BASE_URL}/users?id=${idUser}`)
+      this.http.get<User[]>(`${this.api.BASE_URL}/users/${idUser}`)
           .subscribe({
             next: (data) => {
               this.user.set(data[0]);

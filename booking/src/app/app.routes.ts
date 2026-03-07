@@ -16,11 +16,14 @@ export const routes: Routes = [
     {
         path: 'home',
         component: Home,
-        children:[
+        children:[        
             {
                 path: 'allTrips',
                 component: AllTrips,
-                children:[{path: ':id', component: Trip}]
+            },
+            {
+                path: 'trip/:id',
+                component: Trip,
             },
             {
                 path: 'myTrips',
