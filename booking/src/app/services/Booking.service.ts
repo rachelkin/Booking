@@ -6,6 +6,7 @@ import { map } from "rxjs/internal/operators/map";
 import { Observable } from "rxjs/internal/Observable";
 import { TripService } from "./Trip.service";
 import { Trip } from "../models/trip_model";
+import { Observable } from "rxjs";
 
 @Injectable ({providedIn: 'root'})
 
@@ -32,20 +33,23 @@ export class BookingService{
     return myTrips;
   }
 
-  addBooking(newBooking: Booking){
+  getAllBookings(): Observable<Booking[]> {
     try{
-      this.http.post<Booking>(`${this.api.BASE_URL}/bookings`,newBooking)
-        .subscribe({
-          next:addedBooking => {
-        this.bookings.update(current => [...current, addedBooking]);
-        },
-        error:(err)=>{
-          console.error('Failed to add booking', err);
-        }
-      });
+      return this.http.get<Booking[]>(`${this.api.BASE_URL}/bookings`);
     }
     catch(error){
       console.error('Error fetching bookings:', error);
+      throw error;
+    }
+  }
+
+  addBooking(newBooking: Booking): Observable<Booking> {
+    try{
+      return this.http.post<Booking>(`${this.api.BASE_URL}/bookings`,newBooking);
+    }
+    catch(error){
+      console.error('Error fetching bookings:', error);
+      throw error;
     } 
   }
 
@@ -55,5 +59,22 @@ export class BookingService{
         return bookings.reduce((sum, booking) => sum + booking.people, 0);
       })
     );
+  }
+}
+  
+  getBookingsByTripId(tripId: string) {
+    return this.http.get<Booking[]>(`${this.api.BASE_URL}/bookings?tripId=${tripId}`);
+  }
+  
+  
+  
+  getNumberOfRegistrations(tripId: string): Observable<Booking[]> {
+    try{
+      return this.http.get<Booking[]>(`${this.api.BASE_URL}/bookings?tripId=${tripId}`);
+    }
+    catch(error){
+      console.error('Error fetching bookings:', error);
+      throw error;
+    }
   }
 }
