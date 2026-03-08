@@ -97,6 +97,14 @@ login(username: string, password: string) {
     }    
   }
 
+  checkUserExists(username: string) {
+    return this.http.get<User[]>(`${this.api.BASE_URL}/users?name=${username}`);
+  }
+
+  getAllUsers() {
+    return this.http.get<User[]>(`${this.api.BASE_URL}/users`);
+  }
+
   addUser(newUser: User){
       try{
         this.http.post<User>(`${this.api.BASE_URL}/users`,newUser)

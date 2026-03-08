@@ -18,7 +18,7 @@ export class Trip implements OnInit {
   ngOnInit(): void {
     const tripId = this.route.snapshot.paramMap.get('id');
     if (tripId) {
-      this.tripService.getTripByID(Number(tripId)).subscribe(trip => {
+      this.tripService.getTripByID(tripId).subscribe(trip => {
         this.currentTrip.set(trip);
       });
     }

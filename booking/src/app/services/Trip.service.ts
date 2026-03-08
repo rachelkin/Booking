@@ -16,7 +16,7 @@ export class TripService{
       });
   }
 
-  getTripByID(idTrip:Number){
+  getTripByID(idTrip:String){
         return this.http.get<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`);
   }
 
