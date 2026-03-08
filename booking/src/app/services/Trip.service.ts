@@ -17,7 +17,7 @@ export class TripService{
   }
 
   getTripByID(idTrip:String){
-        return this.http.get<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`);
+      return this.http.get<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`);
   }
 
   postAddTrip(newTrip: Trip) {
@@ -41,7 +41,7 @@ export class TripService{
       .subscribe(() => {
         this.trips.update(current => current.filter(trip => trip.id !== idTrip));
       });
-  }
+  } 
 }
 
 

@@ -9,9 +9,12 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 2.5em;
+  font-size: 3.0em;
   margin-bottom: 30px;
-  filter: drop-shadow(0 0 30px rgba(255, 20, 147, 0.6));
+  filter: drop-shadow(0 0 40px rgba(255, 20, 147, 0.8));
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .listTrips {
@@ -19,7 +22,7 @@
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
   margin-top: 30px;
-  padding: 20px;
+  padding: 30px 150px;
 }
 
 .addTrip {
