@@ -36,12 +36,10 @@ login(username: string, password: string) {
         .subscribe({
           next: (data) => {
             if (data.length > 0) {
-              // ✅ המשתמש קיים - התחברות מוצלחת
               localStorage.setItem('user', JSON.stringify(data[0]));
               this.currentUser.set(data[0]);
               this.router.navigate(['/home/allTrips']);
             } else {
-              // ❌ המשתמש לא קיים - צריך להירשם
               this.loginError.set('המשתמש לא קיים במערכת. עליך להירשם תחילה.');
             }
           },

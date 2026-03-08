@@ -320,3 +320,84 @@
     transform: translateY(0) scale(1);
   }
 }
+
+.registration-section {
+  margin: 50px 0;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(255, 50, 180, 0.15), rgba(0, 255, 255, 0.15));
+  border: 2px solid rgba(255, 50, 180, 0.5);
+  border-radius: 25px;
+  box-shadow: 0 0 40px rgba(255, 50, 180, 0.3);
+}
+
+.registration-section h2 {
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #ff1493, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 25px;
+  font-weight: 700;
+  filter: drop-shadow(0 0 20px rgba(255, 50, 180, 0.5));
+}
+
+.registration-form {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.registration-form label {
+  font-size: 1.2em;
+  color: #ffd6ff;
+  font-weight: 600;
+}
+
+.registration-form input {
+  padding: 12px 20px;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 50, 180, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.1em;
+  width: 120px;
+}
+
+.register-btn {
+  padding: 12px 35px;
+  border-radius: 25px;
+  font-size: 1.2em;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  color: white;
+  border: 2px solid rgba(255, 50, 180, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(255, 50, 180, 0.5);
+}
+
+.register-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 50px rgba(255, 50, 180, 0.8);
+}
+
+.message {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.message.error {
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  color: #ffcccc;
+}
+
+.message.success {
+  background: rgba(0, 255, 0, 0.2);
+  border: 2px solid rgba(0, 255, 0, 0.5);
+  color: #ccffcc;
+}

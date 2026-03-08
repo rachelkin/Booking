@@ -424,6 +424,36 @@
       "tripId": 20,
       "userId": 14,
       "people": 2
+    },
+    {
+      "id": "",
+      "tripId": 3,
+      "userId": 1,
+      "people": 1
+    },
+    {
+      "id": "",
+      "tripId": 3,
+      "userId": 1,
+      "people": 1
+    },
+    {
+      "id": "",
+      "tripId": 2,
+      "userId": 1,
+      "people": 5
+    },
+    {
+      "id": "",
+      "tripId": 7,
+      "userId": 1,
+      "people": 8
+    },
+    {
+      "id": "22",
+      "tripId": 15,
+      "userId": 17,
+      "people": 6
     }
   ]
 }

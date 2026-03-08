@@ -23,10 +23,25 @@
             <span class="label">מחיר:</span>
             <span class="value price">${{ currentTrip()?.price }}</span>
           </div>
+          <div class="info-item">
+            <span class="label">רשומים לטיול:</span>
+            <span class="value">{{ bookingsCount() }}</span>
+          </div>
         </div>
         <div class="trip-description">
           <h2>תיאור הטיול</h2>
           <p>{{ currentTrip()?.description }}</p>
+        </div>
+        <div class="registration-section">
+          <h2>הרשמה לטיול</h2>
+          <div class="registration-form">
+            <label for="people">מספר אנשים:</label>
+            <input type="number" id="people" [(ngModel)]="numberOfPeople" min="1" max="50">
+            <button (click)="register()" class="register-btn">הרשם</button>
+          </div>
+          @if (errorMessage()) {
+            <p class="message" [class.error]="!errorMessage().includes('ההרשמה בוצעה בהצלחה')" [class.success]="errorMessage().includes('ההרשמה בוצעה בהצלחה')">{{ errorMessage() }}</p>
+          }
         </div>
         <div class="trip-actions">
           <a routerLink="/home/allTrips" class="back-btn">חזרה לרשימת הטיולים</a>
