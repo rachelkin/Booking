@@ -36,7 +36,13 @@
       
       <button type="submit" class="loginBtn" [disabled]="!loginForm.valid">Login</button>
       @if(errorMessage()) {
-        <div class="error">{{ errorMessage() }}</div>
+        <div class="error">
+          {{ errorMessage() }}
+          @if(errorMessage().includes('המשתמש לא קיים במערכת')) {
+            <br><br>
+            <a routerLink="/register" class="loginBtn">עבור להרשמה</a>
+          }
+        </div>
       }
     </form>
   </div>

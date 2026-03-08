@@ -19,6 +19,7 @@
   top: -250px;
   right: -250px;
   animation: pulse 4s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .loginPage::after {
@@ -31,6 +32,7 @@
   bottom: -200px;
   left: -200px;
   animation: pulse 5s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes pulse {
@@ -40,37 +42,15 @@
 
 .loginContainer {
   background: linear-gradient(135deg, rgba(60, 40, 100, 0.95), rgba(80, 50, 120, 0.95));
-  backdrop-filter: blur(20px);
   padding: 50px 40px;
   border-radius: 25px;
-  border: 2px solid rgba(255, 20, 147, 0.5);
+  border: 3px solid rgba(255, 20, 147, 0.6);
   box-shadow: 0 0 60px rgba(255, 20, 147, 0.5), 0 0 100px rgba(0, 255, 255, 0.3);
   width: 100%;
   max-width: 450px;
-  position: relative;
-  z-index: 1;
 }
 
-.loginContainer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 25px;
-  padding: 2px;
-  background: linear-gradient(135deg, #ff1493, #00ffff, #ff1493);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: borderGlow 3s linear infinite;
-}
 
-@keyframes borderGlow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
 
 .loginContainer h1 {
   background: linear-gradient(90deg, #ff1493, #00ffff, #ff1493);
@@ -97,8 +77,13 @@
   font-size: 1.1em;
 }
 
+form {
+  position: relative;
+}
+
 .formGroup {
   margin-bottom: 25px;
+  position: relative;
 }
 
 .formGroup label {
@@ -112,8 +97,8 @@
 .formGroup input {
   width: 100%;
   padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 2px solid rgba(255, 20, 147, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 20, 147, 0.6);
   border-radius: 12px;
   font-size: 1em;
   color: #fff;

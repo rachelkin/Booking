@@ -36,21 +36,23 @@ login(username: string, password: string) {
         .subscribe({
           next: (data) => {
             if (data.length > 0) {
+              // ✅ המשתמש קיים - התחברות מוצלחת
               localStorage.setItem('user', JSON.stringify(data[0]));
               this.currentUser.set(data[0]);
               this.router.navigate(['/home/allTrips']);
             } else {
-              this.loginError.set('Incorrect username or password.');
+              // ❌ המשתמש לא קיים - צריך להירשם
+              this.loginError.set('המשתמש לא קיים במערכת. עליך להירשם תחילה.');
             }
           },
           error: (error) => {
             console.error('Failed to login:', error);
-            this.loginError.set('Login failed. Please try again.');
+            this.loginError.set('שגיאה בהתחברות. נסה שוב.');
           }
         });
     } catch (error) {
       console.error('Error during login:', error);
-      this.loginError.set('An error occurred. Please try again.');
+      this.loginError.set('אירעה שגיאה. נסה שוב.');
     }
    
   }

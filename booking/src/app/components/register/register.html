@@ -1,1 +1,90 @@
-<p>register works!</p>
+<div class="registerPage">
+  <div class="registerContainer">
+    <h1>Create Account</h1>
+    <p class="subtitle">Please register to continue</p>
+    
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <div class="formGroup">
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          [(ngModel)]="username" 
+          #usernameModel="ngModel"
+          name="username"
+          placeholder="Enter your username"
+          required
+          minlength="6">
+          @if(usernameModel.invalid && usernameModel.touched) {
+            <div class="error">Username must be at least 6 characters</div>
+          }
+      </div>
+
+      <div class="formGroup">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="email" 
+          #emailModel="ngModel"
+          name="email"
+          placeholder="Enter your email"
+          required
+          email>
+          @if(emailModel.invalid && emailModel.touched) {
+            <div class="error">Please enter a valid email</div>
+          }
+      </div>
+      
+      <div class="formGroup">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="password" 
+          #passwordModel="ngModel"
+          name="password"
+          placeholder="Enter your password"
+          required
+          minlength="6">
+          @if(passwordModel.invalid && passwordModel.touched) {
+            <div class="error">Password must be at least 6 characters</div>
+          }
+      </div>
+
+      <div class="formGroup">
+        <label for="verifyPassword">Verify Password</label>
+        <input 
+          type="password" 
+          id="verifyPassword" 
+          [(ngModel)]="verifyPassword" 
+          #verifyPasswordModel="ngModel"
+          name="verifyPassword"
+          placeholder="enter your password again"
+          required>
+          @if(verifyPasswordModel.invalid && verifyPasswordModel.touched) {
+            <div class="error">Please verify your password</div>
+          }
+          @if(password !== verifyPassword && verifyPasswordModel.touched) {
+            <div class="error">Passwords don't match</div>
+          }
+      </div>
+      
+      <button type="submit" class="registerBtn" [disabled]="!registerForm.valid">Register</button>
+      
+      @if(errorMessage()) {
+        <div class="error">{{ errorMessage() }}</div>
+      }
+      
+      @if(successMessage()) {
+        <div class="success">{{ successMessage() }}</div>
+      }
+
+      <div class="login-link">
+        <p>You have an account? 
+          <a routerLink="/login">Login here</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
