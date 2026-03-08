@@ -3,7 +3,7 @@ import { inject, Injectable ,signal} from "@angular/core";
 import { ApiService } from "./Api.service";
 import { Booking } from "../models/booking_model"
 import { map } from "rxjs/internal/operators/map";
-import { Observable } from "rxjs/internal/Observable";
+// import { Observable } from "rxjs/internal/Observable";
 import { TripService } from "./Trip.service";
 import { Trip } from "../models/trip_model";
 import { Observable } from "rxjs";
@@ -52,20 +52,10 @@ export class BookingService{
       throw error;
     } 
   }
-
-  getNumberOfRegistrations(tripId: string): Observable<number> {
-    return this.http.get<Booking[]>(this.api.BASE_URL + '/bookings' + `?tripId=${tripId}`).pipe(
-      map(bookings => {    
-        return bookings.reduce((sum, booking) => sum + booking.people, 0);
-      })
-    );
-  }
-}
   
   getBookingsByTripId(tripId: string) {
     return this.http.get<Booking[]>(`${this.api.BASE_URL}/bookings?tripId=${tripId}`);
   }
-  
   
   
   getNumberOfRegistrations(tripId: string): Observable<Booking[]> {
