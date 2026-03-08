@@ -1,32 +1,32 @@
-@if (tripService.trips().length > 0) {
+@if (currentTrip()) {
   <div class="trip-container">
     <div class="trip-detail">
       <div class="trip-image">
-        <img [src]="tripService.trips()[0].image" [alt]="tripService.trips()[0].name">
+        <img [src]="currentTrip()?.image" [alt]="currentTrip()?.name">
       </div>
       <div class="trip-content">
-        <h1 class="trip-title">{{ tripService.trips()[0].name }}</h1>
+        <h1 class="trip-title">{{ currentTrip()?.name }}</h1>
         <div class="trip-info">
           <div class="info-item">
             <span class="label">יעד:</span>
-            <span class="value">{{ tripService.trips()[0].destination }}</span>
+            <span class="value">{{ currentTrip()?.destination }}</span>
           </div>
           <div class="info-item">
             <span class="label">תאריך התחלה:</span>
-            <span class="value">{{ tripService.trips()[0].startDate }}</span>
+            <span class="value">{{ currentTrip()?.startDate }}</span>
           </div>
           <div class="info-item">
             <span class="label">תאריך סיום:</span>
-            <span class="value">{{ tripService.trips()[0].endDate }}</span>
+            <span class="value">{{ currentTrip()?.endDate }}</span>
           </div>
           <div class="info-item">
             <span class="label">מחיר:</span>
-            <span class="value price">${{ tripService.trips()[0].price }}</span>
+            <span class="value price">${{ currentTrip()?.price }}</span>
           </div>
         </div>
         <div class="trip-description">
           <h2>תיאור הטיול</h2>
-          <p>{{ tripService.trips()[0].description }}</p>
+          <p>{{ currentTrip()?.description }}</p>
         </div>
         <div class="trip-actions">
           <a routerLink="/home/allTrips" class="back-btn">חזרה לרשימת הטיולים</a>
@@ -36,7 +36,7 @@
   </div>
 }
 
-@if (tripService.trips().length === 0) {
+@if (?currentTrip()) {
   <div class="loading">
     <p>טוען פרטי טיול...</p>
   </div>
