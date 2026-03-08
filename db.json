@@ -97,6 +97,27 @@
       "email": "noah@example.com",
       "password": "noah888",
       "isAdmin": false
+    },
+    {
+      "id": "15",
+      "name": "רחל קינסבורסקי",
+      "email": "rachel67960@gmail.com",
+      "password": "123456",
+      "isAdmin": false
+    },
+    {
+      "id": "16",
+      "name": "מיכל בנגייב",
+      "email": "michal@gmail.com",
+      "password": "147147",
+      "isAdmin": false
+    },
+    {
+      "id": "17",
+      "name": "רעות כהן",
+      "email": "reutcohen@gmail.com",
+      "password": "963963",
+      "isAdmin": false
     }
   ],
   "trips": [

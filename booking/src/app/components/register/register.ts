@@ -3,8 +3,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/User.service';
 import { User } from '../../models/user_model';
-import { HttpClient } from '@angular/common/http';
-import { ApiService } from '../../services/Api.service';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +13,6 @@ import { ApiService } from '../../services/Api.service';
 export class Register {
   private router = inject(Router);
   private userService = inject(UserService);
-  private http = inject(HttpClient);
-  private api = inject(ApiService);
   
   username = '';
   email = '';
@@ -35,32 +31,37 @@ export class Register {
         return;
       }
 
-      this.http.get<User[]>(`${this.api.BASE_URL}/users?name=${this.username}`)
+      this.userService.checkUserExists(this.username)
         .subscribe({
           next: (data) => {
             if (data.length > 0) {
               this.errorMessage.set('המשתמש כבר קיים במערכת. מעבר לדף התחברות...');
               this.router.navigate(['/login']);
             } else {
-              const newUser: User = {
-                id: Date.now().toString(),
-                name: this.username,
-                email: this.email,
-                password: this.password,
-                isAdmin: false
-              };
-              
-              this.http.post<User>(`${this.api.BASE_URL}/users`, newUser)
+              this.userService.getAllUsers()
                 .subscribe({
-                  next: (addedUser) => {
+                  next: (allUsers) => {
+                    const maxId = allUsers.length > 0 
+                      ? Math.max(...allUsers.map(u => parseInt(u.id))) 
+                      : 0;
+                    
+                    const newUser: User = {
+                      id: (maxId + 1).toString(),
+                      name: this.username,
+                      email: this.email,
+                      password: this.password,
+                      isAdmin: false
+                    };
+                    
+                    this.userService.addUser(newUser);
                     this.successMessage.set('נרשמת בהצלחה! מעבר לדף הבית...');
-                    localStorage.setItem('user', JSON.stringify(addedUser));
-                    this.userService.currentUser.set(addedUser);
+                    localStorage.setItem('user', JSON.stringify(newUser));
+                    this.userService.currentUser.set(newUser);
                     this.router.navigate(['/home/allTrips']);
                   },
                   error: (error) => {
-                    console.error('Failed to add user:', error);
-                    this.errorMessage.set('שגיאה ביצירת המשתמש. נסה שוב.');
+                    console.error('Failed to get users:', error);
+                    this.errorMessage.set('שגיאה בקבלת נתונים. נסה שוב.');
                   }
                 });
             }
