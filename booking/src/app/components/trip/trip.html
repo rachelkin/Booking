@@ -8,19 +8,19 @@
         <h1 class="trip-title">{{ currentTrip()?.name }}</h1>
         <div class="trip-info">
           <div class="info-item">
-            <span class="label">יעד:</span>
+            <span class="label">Destination:</span>
             <span class="value">{{ currentTrip()?.destination }}</span>
           </div>
           <div class="info-item">
-            <span class="label">תאריך התחלה:</span>
+            <span class="label">Start Date:</span>
             <span class="value">{{ currentTrip()?.startDate }}</span>
           </div>
           <div class="info-item">
-            <span class="label">תאריך סיום:</span>
+            <span class="label">End Date:</span>
             <span class="value">{{ currentTrip()?.endDate }}</span>
           </div>
           <div class="info-item">
-            <span class="label">מחיר:</span>
+            <span class="label">Price:</span>
             <span class="value price">${{ currentTrip()?.price }}</span>
           </div>
           <div class="info-item">
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="trip-description">
-          <h2>תיאור הטיול</h2>
+          <h2>Trip Description</h2>
           <p>{{ currentTrip()?.description }}</p>
         </div>
         <div class="registration-section">
@@ -44,7 +44,7 @@
           }
         </div>
         <div class="trip-actions">
-          <a routerLink="/home/allTrips" class="back-btn">חזרה לרשימת הטיולים</a>
+          <a routerLink="/home/allTrips" class="back-btn">Back to Trips</a>
         </div>
       </div>
     </div>
@@ -53,6 +53,6 @@
 
 @if (!currentTrip()) {
   <div class="loading">
-    <p>טוען פרטי טיול...</p>
+    <p>Loading trip details...</p>
   </div>
 }

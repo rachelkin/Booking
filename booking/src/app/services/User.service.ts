@@ -5,6 +5,7 @@ import { ApiService } from "./Api.service";
 import { User } from "../models/user_model"
 
 @Injectable ({providedIn: 'root'})
+
 export class UserService{
   private api = inject(ApiService);
   private http = inject(HttpClient);

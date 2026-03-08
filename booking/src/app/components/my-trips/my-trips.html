@@ -1,1 +1,14 @@
-<p>my-trips works!</p>
+<div class="myTripsPage">
+  <h1>My Trips</h1>
+  @if(myTrips().length === 0) {
+    <p class="emptyMessage">You have no trips booked yet.</p>
+  }
+  @else{
+    <div class="tripsList">
+      @for(trip of myTrips(); track trip.id)
+      {       
+        <app-trip-card [trip]=trip></app-trip-card>
+      }
+    </div>
+  }  
+</div>
