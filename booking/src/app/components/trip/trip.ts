@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripService } from '../../services/Trip.service';
 import { RouterLink } from '@angular/router';
+import { Trip as tripmodel} from '../../models/trip_model';
 
 @Component({
   selector: 'app-trip',
@@ -14,9 +15,6 @@ export class Trip implements OnInit {
   tripService = inject(TripService);
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if(id){
-      this.tripService.getTripByID(Number(id));
-    }
+    this.tripService.getAllTrips();
   }
 }

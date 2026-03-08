@@ -3,6 +3,7 @@ import { TripService } from '../../services/Trip.service';
 import { TripCard } from './trip-card/trip-card';
 import { UserService } from '../../services/User.service';
 import { AddTrip } from './add-trip/add-trip';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-all-trips',

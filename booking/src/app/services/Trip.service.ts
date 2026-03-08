@@ -17,10 +17,7 @@ export class TripService{
   }
 
   getTripByID(idTrip:Number){
-        this.http.get<Trip[]>(`${this.api.BASE_URL}/trips?id=${idTrip}`)
-        .subscribe(data=>{
-            this.trips.set(data);
-        });
+        return this.http.get<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`);
   }
 
   postAddTrip(newTrip: Trip) {

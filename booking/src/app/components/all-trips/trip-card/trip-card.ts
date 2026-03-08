@@ -12,19 +12,13 @@ import { RouterLink } from "@angular/router";
 })
 export class TripCard {
   private userService = inject(UserService);
+  private tripService = inject(TripService);
+  
   currentUser = this.userService.currentUser();
   isAdmin = this.currentUser?.isAdmin;
-
-  private tripService = inject(TripService);
-
   trip = input<Trip>();
 
   deleteTrip(){
     console.log("delete trip");
-    
-    // const trip = this.trip();
-    // if (trip?.id) {
-    //   this.tripService.deleteTripByID(trip.id);
-    // }
   }
 }

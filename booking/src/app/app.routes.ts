@@ -27,9 +27,12 @@ export const routes: Routes = [
             },
             {
                 path: 'myTrips',
-                component: MyTrips,
-                children:[{path: ':id', component: Trip}]
-            },           
+                component: MyTrips
+            },
+            {
+                path: 'trip/:id',
+                component: Trip
+            }           
         ]
     },
     {path: '**', component: Error}
