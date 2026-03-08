@@ -17,7 +17,7 @@
 
     <div class="trip-footer">
       <span class="trip-price">${{ trip()?.price }}</span>
-      <button class="book-btn" [routerLink]="[trip()?.id]">Viewing the trip</button>
+      <button class="book-btn" [routerLink]="['../trip', trip()?.id]">Viewing the trip</button>
     </div>
     @if(isAdmin){
          <div class="Admin_permissions">
