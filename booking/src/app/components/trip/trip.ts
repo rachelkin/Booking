@@ -23,15 +23,19 @@ export class Trip implements OnInit {
   numberOfPeople = signal<number>(1);
   errorMessage = signal<string>('');
 
-  ngOnInit(): void {
-    const tripId = this.route.snapshot.paramMap.get('id');
+ngOnInit(): void {
+  this.route.paramMap.subscribe(params => {
+    const tripId = params.get('id');
     if (tripId) {
-      this.tripService.getTripByID(tripId).subscribe(trip => {
-        this.currentTrip.set(trip);
-      });
+      this.tripService.getTripByID(tripId)
+        .subscribe(trip => {
+          this.currentTrip.set(trip);
+        });
       this.loadBookings(tripId);
     }
-  }
+  });
+
+}
 
   loadBookings(tripId: string): void {
     this.bookingService.getNumberOfRegistrations(tripId).subscribe(bookings => {
