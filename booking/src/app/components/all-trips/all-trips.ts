@@ -21,7 +21,9 @@ export class AllTrips implements OnInit {
   canAddTtip = signal(false)
 
   ngOnInit() {
-    this.tripService.getAllTrips(); 
+     this.tripService.getAllTrips().subscribe(trips => {
+      this.trips.set(trips);
+    }); 
   }
   addTrip() {
     this.canAddTtip.update(val => !val);

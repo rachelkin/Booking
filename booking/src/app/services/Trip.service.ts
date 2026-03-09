@@ -1,50 +1,47 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable ,signal} from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { ApiService } from "./Api.service";
-import { Trip } from "../models/trip_model"
+import { Trip } from "../models/trip_model";
+import { Observable } from "rxjs";
 
-@Injectable ({providedIn: 'root'})
-export class TripService{
+@Injectable({ providedIn: 'root' })
+export class TripService {
+
   private api = inject(ApiService);
   private http = inject(HttpClient);
-  trips = signal<Trip[]>([]);    
 
-  getAllTrips() {
-    this.http.get<Trip[]>(`${this.api.BASE_URL}/trips`)
-      .subscribe(data => {
-        this.trips.set(data);
-      });
+  trips = signal<Trip[]>([]);
+
+  getAllTrips(): Observable<Trip[]> {
+    return this.http.get<Trip[]>(
+      `${this.api.BASE_URL}/trips`
+    );
   }
 
-  getTripByID(idTrip:String){
-      return this.http.get<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`);
+  getTripByID(idTrip: string): Observable<Trip> {
+    return this.http.get<Trip>(
+      `${this.api.BASE_URL}/trips/${idTrip}`
+    );
   }
 
-  postAddTrip(newTrip: Trip) {
-        this.http.post<Trip>(`${this.api.BASE_URL}/trips`,newTrip)
-        .subscribe(addedTrip => {
-      this.trips.update(current => [...current, addedTrip]);
-    });
+  postAddTrip(newTrip: Trip): Observable<Trip> {
+    return this.http.post<Trip>(
+      `${this.api.BASE_URL}/trips`,
+      newTrip
+    );
   }
-  
- putTripByID(idTrip: string, updatedTrip: Trip) {
-  this.http.put<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`, updatedTrip)
-    .subscribe(putedTrip => {
-      this.trips.update(current =>
-        current.map(trip => trip.id === putedTrip.id ? putedTrip : trip)
-      );
-    });
+
+  putTripByID(idTrip: string, updatedTrip: Trip): Observable<Trip> {
+    return this.http.put<Trip>(
+      `${this.api.BASE_URL}/trips/${idTrip}`,
+      updatedTrip
+    );
+  }
+
+  deleteTripByID(idTrip: string): Observable<Trip> {
+    return this.http.delete<Trip>(
+      `${this.api.BASE_URL}/trips/${idTrip}`
+    );
+  }
+
 }
-
-  deleteTripByID(idTrip: string) {
-    this.http.delete<Trip>(`${this.api.BASE_URL}/trips/${idTrip}`)
-      .subscribe(() => {
-        this.trips.update(current => current.filter(trip => trip.id !== idTrip));
-      });
-  } 
-}
-
-
-
-
-
