@@ -32,22 +32,36 @@
           <h2>Trip Description</h2>
           <p>{{ currentTrip()?.description }}</p>
         </div>
-        <div class="registration-section">
-          <h2>Trip Registration</h2>
-          <div class="registration-form">
-            <label for="people">Number of People:</label>
-            <input type="number" id="people" [(ngModel)]="numberOfPeople" min="1" max="50">
-            <button (click)="register()" class="register-btn">Register</button>
+        @if(!Invited){
+           <div class="registration-section">
+            <h2>Trip Registration</h2>
+            <div class="registration-form">
+              <label for="people">Number of People:</label>
+              <input type="number" id="people" [(ngModel)]="numberOfPeople" min="1" max="50">
+              <button (click)="register()" class="register-btn">Register</button>
           </div>
-          @if (errorMessage()) {
+            @if (errorMessage()) {
             <p class="message" [class.error]="!errorMessage().includes('success')" [class.success]="errorMessage().includes('success')">{{ errorMessage() }}</p>
           }
-        </div>
+          </div>
+        }    
+      
         <div class="trip-actions">
           <a routerLink="/home/allTrips" class="back-btn">Back to Trips</a>
         </div>
       </div>
+        @if(Invited){
+         <div class="Unsubscribe">
+            <button class="register-btn" (click)="Unsubscribe()">Canceling a trip registration</button>     
+         </div>
+         @if(messageUnsubscribe()){
+          <div class="unsubscribe-overlay">
+            {{ messageUnsubscribe() }}
+          </div>
+        }
+    }   
     </div>
+   
   </div>
 }
 

@@ -5,11 +5,12 @@ import { TripCard } from '../all-trips/trip-card/trip-card';
 import { TripService } from '../../services/Trip.service';
 import { Trip } from '../../models/trip_model';
 import { Booking } from '../../models/booking_model';
+import { RouterLink } from "@angular/router";
 
 
 @Component({
   selector: 'app-my-trips',
-  imports: [TripCard],
+  imports: [TripCard, RouterLink],
   templateUrl: './my-trips.html',
   styleUrl: './my-trips.css',
 })

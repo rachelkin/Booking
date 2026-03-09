@@ -6,8 +6,18 @@
   @else{
     <div class="tripsList">
       @for(trip of myTrips(); track trip.id)
-      {       
-        <app-trip-card [trip]=trip></app-trip-card>
+      {   
+        <div class="trip-card">
+          <img class="trip-image" [src]="trip?.image" [alt]="trip?.name" />
+
+          <div class="trip-content">
+            <h2 class="trip-title">{{ trip?.name }}</h2>
+            <p class="trip-destination"> {{ trip?.destination }}</p>
+            <div class="trip-footer">
+              <button class="book-btn" [routerLink]="['../trip', trip?.id]" [queryParams]="{ Invited: true }">Viewing the trip</button>
+            </div>
+          </div>
+      </div>    
       }
     </div>
   }  

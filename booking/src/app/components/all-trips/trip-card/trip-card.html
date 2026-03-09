@@ -8,11 +8,13 @@
     <div class="trip-footer">
       <button class="book-btn" [routerLink]="['../trip', trip()?.id]">Viewing the trip</button>
     </div>
-    @if(isAdmin){
+    @if(isAdmin && !isTripRegistered){
          <div class="Admin_permissions">
             <button (click)="deleteTrip()">delete</button>
             <button>editing</button>      
          </div>
-    }   
+    }
+   
+    
   </div>
 </div>

@@ -1,5 +1,5 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject, input, Input, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TripService } from '../../services/Trip.service';
 import { BookingService } from '../../services/Booking.service';
 import { RouterLink } from '@angular/router';
@@ -18,24 +18,29 @@ export class Trip implements OnInit {
   private tripService = inject(TripService);
   private bookingService = inject(BookingService);
   private userService = inject(UserService);
+  @Input() id !: string;
   currentTrip = signal<TripModel | null>(null);
   bookingsCount = signal<number>(0);
   numberOfPeople = signal<number>(1);
   errorMessage = signal<string>('');
 
-ngOnInit(): void {
-  this.route.paramMap.subscribe(params => {
-    const tripId = params.get('id');
-    if (tripId) {
-      this.tripService.getTripByID(tripId)
-        .subscribe(trip => {
-          this.currentTrip.set(trip);
-        });
-      this.loadBookings(tripId);
-    }
-  });
+  currentUser = this.userService.currentUser();
+  isTripRegistered = input<boolean>(false);
+  messageUnsubscribe = signal<string>('');
+  @Input() Invited : boolean = false;
 
-}
+  constructor(private router: Router) {}
+
+  ngOnInit(): void { 
+      const tripId = this.id;
+      if (tripId) {
+        this.tripService.getTripByID(tripId)
+          .subscribe(trip => {
+            this.currentTrip.set(trip);
+          });
+        this.loadBookings(tripId);
+      }
+  }
 
   loadBookings(tripId: string): void {
     this.bookingService.getNumberOfRegistrations(tripId).subscribe(bookings => {
@@ -89,4 +94,27 @@ ngOnInit(): void {
       });
     });
   }
+
+    Unsubscribe() {
+    this.bookingService.idsBookingsToDelete(this.currentUser!.id, this.currentTrip()!.id)
+      .subscribe(ids => {
+
+        console.log("ids to delete:", ids);
+
+        ids.forEach(id => {
+          this.bookingService.deleteBooking(id).subscribe({
+            next: () => {
+              this.messageUnsubscribe.set('You have successfully unsubscribed from the trip');
+              setTimeout(() => {
+                this.router.navigate(['home/myTrips']);
+              }, 3000); 
+            },
+            error: () => {
+              this.messageUnsubscribe.set('Error unsubscribing from the trip, please try again later');
+            }
+          });
+        });
+
+      });
+}
 }
