@@ -8,10 +8,12 @@
         </div>
         
     </div>
+    @if(ifHomeAndMore()) {
     <div class="welcome-section">
         <h2>Welcome to A Trip Booking!</h2>
         <p>Discover an amazing experience with unforgettable trips around the world</p>
         <p>Choose from a variety of exciting destinations and embark on the adventure of a lifetime!</p>
     </div>
-    <router-outlet></router-outlet>
+    }
+    <router-outlet (activate)="onActivate()" (deactivate)="onDeactivate()"></router-outlet>
 </div>
