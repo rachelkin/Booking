@@ -10,7 +10,7 @@ export class TripService {
   private api = inject(ApiService);
   private http = inject(HttpClient);
 
-  trips = signal<Trip[]>([]);
+
 
   getAllTrips(): Observable<Trip[]> {
     return this.http.get<Trip[]>(

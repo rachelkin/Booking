@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { BookingService } from '../../services/Booking.service';
 import { UserService } from '../../services/User.service';
-import { TripCard } from '../all-trips/trip-card/trip-card';
 import { TripService } from '../../services/Trip.service';
 import { Trip } from '../../models/trip_model';
 import { Booking } from '../../models/booking_model';
@@ -10,7 +9,7 @@ import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-my-trips',
-  imports: [TripCard, RouterLink],
+  imports: [RouterLink],
   templateUrl: './my-trips.html',
   styleUrl: './my-trips.css',
 })

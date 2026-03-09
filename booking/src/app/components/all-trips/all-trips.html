@@ -11,7 +11,10 @@
     <div class="listTrips">
         @for(trip of trips(); track trip.id)
         {
-            <app-trip-card [trip]=trip></app-trip-card>
+            <app-trip-card 
+                [trip]=trip
+                (deleted)="onTripDeleted($event)">
+            </app-trip-card>
         }
     </div> 
 </div>
