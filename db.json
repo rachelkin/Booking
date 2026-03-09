@@ -454,6 +454,19 @@
       "tripId": 15,
       "userId": 17,
       "people": 6
+    },
+    {
+      "id": "23",
+      "tripId": 1,
+      "userId": 1,
+      "people": 1
+    },
+    {
+      "id": "24",
+      "tripId": 2,
+      "userId": 10,
+      "people": 2
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
