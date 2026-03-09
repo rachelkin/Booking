@@ -24,7 +24,7 @@
             <span class="value price">${{ currentTrip()?.price }}</span>
           </div>
           <div class="info-item">
-            <span class="label">רשומים לטיול:</span>
+            <span class="label">Registered:</span>
             <span class="value">{{ bookingsCount() }}</span>
           </div>
         </div>
@@ -33,14 +33,14 @@
           <p>{{ currentTrip()?.description }}</p>
         </div>
         <div class="registration-section">
-          <h2>הרשמה לטיול</h2>
+          <h2>Trip Registration</h2>
           <div class="registration-form">
-            <label for="people">מספר אנשים:</label>
+            <label for="people">Number of People:</label>
             <input type="number" id="people" [(ngModel)]="numberOfPeople" min="1" max="50">
-            <button (click)="register()" class="register-btn">הרשם</button>
+            <button (click)="register()" class="register-btn">Register</button>
           </div>
           @if (errorMessage()) {
-            <p class="message" [class.error]="!errorMessage().includes('ההרשמה בוצעה בהצלחה')" [class.success]="errorMessage().includes('ההרשמה בוצעה בהצלחה')">{{ errorMessage() }}</p>
+            <p class="message" [class.error]="!errorMessage().includes('success')" [class.success]="errorMessage().includes('success')">{{ errorMessage() }}</p>
           }
         </div>
         <div class="trip-actions">

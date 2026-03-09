@@ -44,12 +44,12 @@ export class Trip implements OnInit {
     const people = this.numberOfPeople();
     
     if (people < 1) {
-      this.errorMessage.set('מספר האנשים חייב להיות לפחות 1');
+      this.errorMessage.set('Number of people must be at least 1');
       return;
     }
     
     if (people > 10) {
-      this.errorMessage.set('מספר האנשים לא יכול לעבור 10');
+      this.errorMessage.set('Number of people cannot exceed 10');
       return;
     }
 
@@ -59,7 +59,7 @@ export class Trip implements OnInit {
     const currentUser = this.userService.currentUser();
     const userID = this.userService.currentUser()?.id;
     if (!currentUser) {
-      this.errorMessage.set('יש להתחבר כדי להירשם');
+      this.errorMessage.set('Please login to register');
       return;
     }
 
@@ -75,12 +75,12 @@ export class Trip implements OnInit {
 
       this.bookingService.addBooking(newbooking).subscribe({
         next: () => {
-          this.errorMessage.set('ההרשמה בוצעה בהצלחה!');
+          this.errorMessage.set('Registration completed successfully!');
           this.numberOfPeople.set(1);
           this.loadBookings(tripId);
         },
         error: () => {
-          this.errorMessage.set('שגיאה בהרשמה, נסה שוב');
+          this.errorMessage.set('Registration error, please try again');
         }
       });
     });
