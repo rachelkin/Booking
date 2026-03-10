@@ -48,18 +48,19 @@ export class Trip implements OnInit {
     });
   }
 
-  checkIfRegistered(): boolean {
-    this.bookingService.checkIfUserRegisteredToTrip(this.currentUser!.id, this.id)
-      .subscribe(isRegistered => {
-        return isRegistered;
-      });
-    return false;
-  }
-
   register(): void {
+    const currentUser = this.userService.currentUser();
     this.errorMessage.set('');
     const people = this.numberOfPeople();
-    
+    const tripId = this.id;
+
+    if (!tripId) return;
+
+    if (!currentUser) {
+      this.errorMessage.set('Please login to register');
+      return;
+    }
+
     if (people < 1) {
       this.errorMessage.set('Number of people must be at least 1');
       return;
@@ -70,21 +71,14 @@ export class Trip implements OnInit {
       return;
     }
 
-    if(!this.checkIfRegistered()){
-      this.errorMessage.set('You are already registered for this trip.');
-      return;
-    }
-
-    const tripId = this.id;
-    if (!tripId) return;
-
-    const currentUser = this.userService.currentUser();
-    if (!currentUser) {
-      this.errorMessage.set('Please login to register');
-      return;
-    }
-
-    this.bookingService.getAllBookings().subscribe(bookings => {
+    this.bookingService.checkIfUserRegisteredToTrip(currentUser!.id, tripId)
+    .subscribe(bookings => {
+      if (bookings.length > 0) {
+        this.errorMessage.set('You are already registered for this trip.');
+        return;
+      }
+      
+      this.bookingService.getAllBookings().subscribe(bookings => {
       const newId = String(bookings.length + 2);
       const newbooking = {
         id: newId,
@@ -102,30 +96,27 @@ export class Trip implements OnInit {
         error: () => {
           this.errorMessage.set('Registration error, please try again');
         }
+        });
       });
-    });
+    });    
   }
 
-    Unsubscribe() {
-    this.bookingService.idsBookingsToDelete(this.currentUser!.id, this.currentTrip()!.id)
-      .subscribe(ids => {
-
-        console.log("ids to delete:", ids);
-
-        ids.forEach(id => {
-          this.bookingService.deleteBooking(id).subscribe({
-            next: () => {
-              this.messageUnsubscribe.set('You have successfully unsubscribed from the trip');
-              setTimeout(() => {
-                this.router.navigate(['home/myTrips']);
-              }, 2500); 
-            },
-            error: () => {
-              this.messageUnsubscribe.set('Error unsubscribing from the trip, please try again later');
-            }
+  Unsubscribe() {
+      this.bookingService.idsBookingsToDelete(this.currentUser!.id, this.currentTrip()!.id)
+        .subscribe(ids => {
+          ids.forEach(id => {
+            this.bookingService.deleteBooking(id).subscribe({
+              next: () => {
+                this.messageUnsubscribe.set('You have successfully unsubscribed from the trip');
+                setTimeout(() => {
+                  this.router.navigate(['home/myTrips']);
+                }, 2500); 
+              },
+              error: () => {
+                this.messageUnsubscribe.set('Error unsubscribing from the trip, please try again later');
+              }
+            });
           });
-        });
-
       });
-}
+  }
 }
