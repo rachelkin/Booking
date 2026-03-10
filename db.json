@@ -313,13 +313,13 @@
     },
     {
       "id": "21",
-      "name": "venetzia",
-      "destination": "venetzia, europ",
-      "startDate": "2026-05-02",
-      "endDate": "2026-05-10",
-      "price": 1250,
-      "description": "crazy trip ",
-      "image": "https://www.gotravel.co.il/userfiles/_big_E355710651BA4BD0DC11DF2EE135FEB7.png"
+      "name": "georgia",
+      "destination": "georgia;asia",
+      "startDate": "2026-05-20",
+      "endDate": "2026-05-28",
+      "price": 8555,
+      "description": "A crazy trip for girls only",
+      "image": "https://cdn.bunniktours.com.au/public/posts/images/Europe/Tbilisi%20-%201234016323-feature.jpg"
     },
     {
       "id": "21",
@@ -328,7 +328,7 @@
       "startDate": "2026-05-20",
       "endDate": "2026-05-28",
       "price": 8555,
-      "description": "A crazy trip for girls only",
+      "description": "good trip",
       "image": "https://cdn.bunniktours.com.au/public/posts/images/Europe/Tbilisi%20-%201234016323-feature.jpg"
     }
   ],
@@ -380,12 +380,6 @@
       "tripId": 11,
       "userId": 5,
       "people": 2
-    },
-    {
-      "id": "9",
-      "tripId": 12,
-      "userId": 6,
-      "people": 4
     },
     {
       "id": "10",

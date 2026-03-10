@@ -18,8 +18,11 @@
               <h3>Are you sure you want to delete this trip?</h3>
               <div class="popup-actions">
                 <button class="confirm-btn" (click)="deleteTrip()">Yes</button>
-                <button class="cancel-btn" (click)="toDelete.set(false)">No</button>
+                <button class="cancel-btn" (click)="toDelete.set(false)">No</button>        
               </div>
+              @if(messageToDelete()) {
+                  <p class="error-message">{{ messageToDelete() }}</p>
+                }
           </div>
          }
     }

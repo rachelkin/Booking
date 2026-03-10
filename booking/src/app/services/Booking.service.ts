@@ -23,10 +23,6 @@ export class BookingService {
     return this.http.post<Booking>(`${this.api.BASE_URL}/bookings`, newBooking);
   }
 
-  getBookingsByTripId(tripId: string): Observable<Booking[]> {
-    return this.http.get<Booking[]>(`${this.api.BASE_URL}/bookings?tripId=${tripId}`);
-  }
-
   getNumberOfRegistrations(tripId: string): Observable<Booking[]> {
     return this.http.get<Booking[]>(`${this.api.BASE_URL}/bookings?tripId=${tripId}`);
   }
@@ -37,10 +33,17 @@ export class BookingService {
     .pipe(
       map(bookings => bookings.map(b => b.id))
     );
-}
+  }
 
   deleteBooking(bookingId: string): Observable<void> {
     return this.http.delete<void>(`${this.api.BASE_URL}/bookings/${bookingId}`);
+  }
+
+  checkIfUserRegisteredToTrip(userId: string, tripId: string): Observable<boolean> {
+    return this.http.get<Booking[]>(`${this.api.BASE_URL}/bookings?userId=${userId}&tripId=${tripId}`)
+      .pipe(
+        map(bookings => bookings.length > 0)
+      );
   }
 
 }

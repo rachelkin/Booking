@@ -2,8 +2,11 @@ import { Component, inject, input, output, signal } from '@angular/core';
 import { Trip } from "../../../models/trip_model"
 import { UserService } from '../../../services/User.service';
 import { TripService } from '../../../services/Trip.service';
+import { BookingService } from '../../../services/Booking.service';
 import { Router, RouterLink } from "@angular/router";
 import {Location} from '@angular/common';
+
+
 @Component({
   selector: 'app-trip-card',
   imports: [RouterLink],
@@ -13,25 +16,26 @@ import {Location} from '@angular/common';
 export class TripCard {
   private userService = inject(UserService);
   private tripService = inject(TripService);
-  private location = inject(Location);
+  private bookingService = inject(BookingService);
   private router = inject(Router);
   currentUser = this.userService.currentUser();
   isAdmin = this.currentUser?.isAdmin;
   trip = input<Trip>();
   toDelete = signal<boolean>(false);
   deleted = output<string>();
+  messageToDelete = signal<string>('');
   
   deleteTrip(){
     const id = this.trip()?.id;
     if (!id) return;
 
-    this.tripService.deleteTripByID(id).subscribe({
-      next: () => {
-        this.deleted.emit(id); 
-        this.location.back(); 
-      },
-      error: () => {
-        console.error('Failed to delete trip');
+    this.bookingService.getNumberOfRegistrations(this.trip()?.id||"").subscribe((registrations) => {
+      if (registrations.length === 0) {
+        this.tripService.deleteTripByID(id).subscribe(() => {
+          this.deleted.emit(id);
+        });
+      } else {
+        this.messageToDelete.set('Cannot delete trip with existing registrations.');
       }
     });
   }
@@ -41,8 +45,7 @@ export class TripCard {
     if (id) {
       this.router.navigate(['/home/add_and_edit'], { queryParams: { id } });
     }
-     this.router.navigate(['/home/add_and_edit']);
-
+         this.router.navigate(['/home/add_and_edit']);
 
   }
 }
