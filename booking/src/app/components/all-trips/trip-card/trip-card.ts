@@ -4,8 +4,6 @@ import { UserService } from '../../../services/User.service';
 import { TripService } from '../../../services/Trip.service';
 import { BookingService } from '../../../services/Booking.service';
 import { Router, RouterLink } from "@angular/router";
-import {Location} from '@angular/common';
-
 
 @Component({
   selector: 'app-trip-card',
@@ -24,6 +22,7 @@ export class TripCard {
   toDelete = signal<boolean>(false);
   deleted = output<string>();
   messageToDelete = signal<string>('');
+  messageToEdit = signal<string>('');
   
   deleteTrip(){
     const id = this.trip()?.id;
@@ -40,12 +39,19 @@ export class TripCard {
     });
   }
 
-  addTrip(){
+  EditTrip(){
     const id = this.trip()?.id;
-    if (id) {
-      this.router.navigate(['/home/add_and_edit'], { queryParams: { id } });
-    }
-         this.router.navigate(['/home/add_and_edit']);
+    if (!id) return;
 
+    this.bookingService.getNumberOfRegistrations(this.trip()?.id||"").subscribe((registrations) => {
+      if (registrations.length === 0) {
+        this.router.navigate(['/home/add_and_edit'], { queryParams: { id } }); 
+      } else {
+        this.messageToEdit.set('Cannot edit  trip with existing registrations.');
+        setTimeout(() => {
+          this.messageToEdit.set('');
+        }, 1500);
+      }
+    });
   }
 }

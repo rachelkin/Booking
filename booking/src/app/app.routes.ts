@@ -7,7 +7,7 @@ import { MyTrips } from './components/my-trips/my-trips';
 import { Trip } from './components/trip/trip';
 import { App } from './app';
 import { Error } from './components/error/error';
-import { Add_and_edit } from './components/all-trips/add_and_edit/add_and_edit';
+import { Add_and_edit } from './components/add_and_edit/add_and_edit';
 
 export const routes: Routes = [
     {path:'', component : App},

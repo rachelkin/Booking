@@ -476,6 +476,12 @@
       "tripId": 1,
       "userId": 15,
       "people": 1
+    },
+    {
+      "id": "26",
+      "tripId": 2,
+      "userId": 2,
+      "people": 1
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

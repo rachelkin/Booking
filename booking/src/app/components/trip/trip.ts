@@ -110,7 +110,7 @@ export class Trip implements OnInit {
                 this.messageUnsubscribe.set('You have successfully unsubscribed from the trip');
                 setTimeout(() => {
                   this.router.navigate(['home/myTrips']);
-                }, 2500); 
+                }, 2000); 
               },
               error: () => {
                 this.messageUnsubscribe.set('Error unsubscribing from the trip, please try again later');

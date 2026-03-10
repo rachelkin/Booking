@@ -13,8 +13,8 @@ export class Login {
   private router = inject(Router);
   private userService = inject(UserService);
   
-  username = '';
-  password = '';
+  username = signal<string>('');
+  password = signal<string>('');
   errorMessage = signal<string>('');
 
  login(form: NgForm) {
