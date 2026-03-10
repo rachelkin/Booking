@@ -262,16 +262,6 @@
       "image": "https://picsum.photos/id/1065/400/200"
     },
     {
-      "id": "15",
-      "name": "Edinburgh Castle Tour",
-      "destination": "Edinburgh, Scotland",
-      "startDate": "2026-10-01",
-      "endDate": "2026-10-06",
-      "price": 1400,
-      "description": "Edinburgh Castle, Royal Mile, and Scottish Highlands.",
-      "image": "https://picsum.photos/id/1069/400/200"
-    },
-    {
       "id": "16",
       "name": "Stockholm Archipelago",
       "destination": "Stockholm, Sweden",
@@ -312,14 +302,34 @@
       "image": "https://picsum.photos/id/1085/400/200"
     },
     {
-      "id": "20",
-      "name": "Zurich Alps Experience",
-      "destination": "Zurich, Switzerland",
-      "startDate": "2026-12-01",
-      "endDate": "2026-12-06",
-      "price": 1800,
-      "description": "Lake Zurich, Swiss Alps day trip, and Old Town.",
-      "image": "https://picsum.photos/id/1089/400/200"
+      "id": "59",
+      "name": "KOREA",
+      "destination": "NORTH KOREA",
+      "startDate": "2026-05-20",
+      "endDate": "2026-06-28",
+      "price": 7555,
+      "description": "A crazy trip to Korea for the crazy and the insane",
+      "image": "https://www.elal.com/magazine/wp-content/uploads/2017/01/ThinkstockPhotos-528063548.jpg"
+    },
+    {
+      "id": "21",
+      "name": "venetzia",
+      "destination": "venetzia, europ",
+      "startDate": "2026-05-02",
+      "endDate": "2026-05-10",
+      "price": 1250,
+      "description": "crazy trip ",
+      "image": "https://www.gotravel.co.il/userfiles/_big_E355710651BA4BD0DC11DF2EE135FEB7.png"
+    },
+    {
+      "id": "21",
+      "name": "georgia",
+      "destination": "georgia;asia",
+      "startDate": "2026-05-20",
+      "endDate": "2026-05-28",
+      "price": 8555,
+      "description": "A crazy trip for girls only",
+      "image": "https://cdn.bunniktours.com.au/public/posts/images/Europe/Tbilisi%20-%201234016323-feature.jpg"
     }
   ],
   "bookings": [
@@ -466,6 +476,12 @@
       "tripId": 2,
       "userId": 10,
       "people": 2
+    },
+    {
+      "id": "25",
+      "tripId": 1,
+      "userId": 15,
+      "people": 1
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

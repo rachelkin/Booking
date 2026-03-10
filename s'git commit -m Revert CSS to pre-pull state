@@ -1,0 +1,34 @@
+[33mc8f12a2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m restore all CSS files to previous versions
+[33m2669d52[m הוספת מחיקת טיול
+[33mf251b4a[m add a delete booking
+[33mf0e38e5[m home
+[33mfed6f19[m Merge branch 'main' of https://github.com/rachelkin/Booking
+[33m949c54a[m שינוי לאנגלית
+[33m4e4fc04[m Merge pull request #3 from rachelkin/fixServers
+[33m9fd3da0[m[33m ([m[1;31morigin/fixServers[m[33m)[m fix a server to not subscribe
+[33me7fed7f[m fix conflicts
+[33m79d7008[m Merge pull request #2 from rachelkin/addFeater
+[33mcb8fc76[m Merge branch 'main' into addFeater
+[33m79ea5f0[m הוספה של my-trips עיצוב ותיקונים שונים
+[33mcb885dc[m עדכון לדף פתיחה, שמירת לקוחות ברישום לטיול
+[33m362a31f[m Merge branch 'main' of https://github.com/rachelkin/Booking
+[33ma30bcf3[m db
+[33m78246fe[m סרביסים מתוקנים
+[33m7133e37[m Merge branch 'main' of https://github.com/rachelkin/Booking
+[33m2f870cd[m register
+[33m6bb0527[m עדכנתי את העיצוב ליותר בהיר
+[33m2748294[m עדכנתי את העיצוב ליותר בהיר
+[33mbee676c[m Merge branch 'main' of https://github.com/rachelkin/Booking
+[33m7164b4a[m ///
+[33ma480468[m scss
+[33m00f9d64[m trip card
+[33m5d2a68a[m הוספתי login  ועיצוב בסיסי לאתר ושיניתי קצת את ה routers
+[33m7fed15c[m עדכון של דף שגיאה
+[33me073d05[m michal I did trip
+[33maa5a2f7[m Set default userName to 'Unknown' if not defined
+[33m96a797a[m Merge pull request #1 from rachelkin/Michal_branch
+[33m0bec95e[m[33m ([m[1;31morigin/Michal_branch[m[33m)[m שינויים נוספים
+[33m89069c5[m הוספת סרביסים וקמפוננטות
+[33mc6eab85[m finish merge
+[33m6d952f5[m first commit
+[33m9ec23a1[m Initial commit

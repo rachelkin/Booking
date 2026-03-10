@@ -1,19 +1,25 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TripService } from '../../../services/Trip.service';
-import { Router } from '@angular/router';
+import { BookingService } from '../../../services/Booking.service';
+import { Location } from '@angular/common';
 import { Trip } from '../../../models/trip_model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add_and_edit',
   imports: [FormsModule],
   templateUrl: './add_and_edit.html',
-  styleUrl: './add_and_edit.css',
+  styleUrls: ['./add_and_edit.css'],
 })
-export class Add_and_edit {
+export class Add_and_edit implements OnInit {
   private tripService = inject(TripService);
-  private router = inject(Router);
-  
+  private bookingService = inject(BookingService);
+  private location = inject(Location);
+  private route = inject(ActivatedRoute);
+
+  tripId: string | null = null;
+
   name = '';
   destination = '';
   startDate = '';
@@ -23,29 +29,60 @@ export class Add_and_edit {
   image = '';
   errorMessage = signal('');
 
-  addTrip() {
-    this.errorMessage.set('');
-    
-    if (!this.name || !this.destination || !this.startDate || !this.endDate || !this.price || !this.description || !this.image) {
-      this.errorMessage.set('All fields are required');
-      return;
-    }
-    
-    if (this.price <= 0) {
-      this.errorMessage.set('Price must be greater than 0');
-      return;
-    }
-    
-    if (new Date(this.startDate) >= new Date(this.endDate)) {
-      this.errorMessage.set('End date must be after start date');
-      return;
-    }
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const id = params['id'];
+      if (id) {
+        this.tripId = id;
+        this.loadTripData(id);
+      }
+    });
+  }
 
-    this.tripService.getAllTrips().subscribe(trips => {
-      const newId = String(trips.length + 1);
-      
-      const newTrip: Trip = {
-        id: newId,
+  loadTripData(id: string) {
+    this.tripService.getTripByID(id).subscribe({
+      next: (trip) => {
+        this.name = trip.name;
+        this.destination = trip.destination;
+        this.startDate = trip.startDate;
+        this.endDate = trip.endDate;
+        this.price = trip.price;
+        this.description = trip.description;
+        this.image = trip.image;
+      },
+      error: () => {
+        this.errorMessage.set('Failed to load trip data');
+      }
+    });
+  }
+
+addTrip() {
+  this.errorMessage.set('');
+
+  if (!this.name || !this.destination || !this.startDate || !this.endDate || !this.price || !this.description || !this.image) {
+    this.errorMessage.set('All fields are required');
+    return;
+  }
+
+  if (this.price <= 0) {
+    this.errorMessage.set('Price must be greater than 0');
+    return;
+  }
+
+  if (new Date(this.startDate) >= new Date(this.endDate)) {
+    this.errorMessage.set('End date must be after start date');
+    return;
+  }
+
+  if (this.tripId) {
+    this.bookingService.getNumberOfRegistrations(this.tripId).subscribe((registrations) => {
+      if (registrations.length > 0) {
+        this.errorMessage.set('Cannot edit trip with existing registrations.');
+        return;
+      }
+
+      const updatedTrip: Trip = {
+        id: this.tripId!,
         name: this.name,
         destination: this.destination,
         startDate: this.startDate,
@@ -55,18 +92,50 @@ export class Add_and_edit {
         image: this.image
       };
 
-      this.tripService.postAddTrip(newTrip).subscribe({
+      this.tripService.putTripByID(this.tripId!, updatedTrip).subscribe({
         next: () => {
-          this.router.navigate(['/home/allTrips']);
+          this.location.back();
         },
         error: () => {
-          this.errorMessage.set('Failed to add trip');
+          this.errorMessage.set('Failed to update trip');
         }
       });
     });
+  } else {
+    this.tripService.getAllTrips().subscribe({
+      next: (trips) => {
+        const newId = (trips.length + 1).toString();
+
+        const newTrip: Trip = {
+          id: newId,
+          name: this.name,
+          destination: this.destination,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          price: this.price!,
+          description: this.description,
+          image: this.image
+        };
+
+
+
+
+        this.tripService.postAddTrip(newTrip).subscribe({
+          next: () => {
+            this.location.back();
+          },
+          error: () => {
+            this.errorMessage.set('Failed to add trip');
+          }
+        });
+      },
+      error: () => {
+        this.errorMessage.set('Failed to load trips');
+      }
+    });
   }
-  
+}
   cancel() {
-    this.router.navigate(['/home/allTrips']);
+    this.location.back();
   }
 }

@@ -95,3 +95,41 @@
   transform: rotate(90deg);
   box-shadow: 0 0 35px rgba(255, 20, 147, 0.9);
 }
+
+.filters {
+  display: flex;
+  gap: 15px;
+  margin: 30px auto;
+  padding: 25px;
+  background: linear-gradient(135deg, rgba(255, 50, 180, 0.15), rgba(0, 255, 255, 0.15));
+  border: 2px solid rgba(255, 50, 180, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 50, 180, 0.3);
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 900px;
+}
+
+.filters input,
+.filters select {
+  padding: 12px 20px;
+  border: 2px solid rgba(255, 20, 147, 0.5);
+  border-radius: 25px;
+  font-size: 1em;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.filters input:focus,
+.filters select:focus {
+  outline: none;
+  border-color: #ff1493;
+  box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+  transform: translateY(-2px);
+}
+
+.filters input::placeholder {
+  color: #999;
+}

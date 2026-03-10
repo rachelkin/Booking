@@ -11,7 +11,7 @@
     @if(isAdmin){
          <div class="Admin_permissions">
            <button (click)="toDelete.set(true)">Delete</button>
-            <button>Editing</button>      
+            <button  (click)="addTrip()">Editing</button>      
          </div>
          @if(toDelete()){
           <div class="mini-popup">
