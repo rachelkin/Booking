@@ -15,7 +15,7 @@ export class Login {
   
   username = '';
   password = '';
-  errorMessage = this.userService.loginError;
+  errorMessage = signal<string>('');
 
  login(form: NgForm) {
     if (!form.valid) return;
@@ -27,13 +27,13 @@ export class Login {
             const user = users[0];
             localStorage.setItem('user', JSON.stringify(user));
             this.userService.currentUser.set(user);
-            this.router.navigate(['/home/allTrips']);
+            this.router.navigate(['/home']);
           } else {
-            this.userService.loginError.set('המשתמש לא קיים במערכת. עליך להירשם תחילה.');
+            this.errorMessage.set("שם המשתמש או הסיסמה שגויים. נסה שוב.");
           }
         },
         error: () => {
-          this.userService.loginError.set('שגיאה בהתחברות. נסה שוב.');
+          this.errorMessage.set('שגיאה בהתחברות. נסה שוב.');
         }
       });
   }

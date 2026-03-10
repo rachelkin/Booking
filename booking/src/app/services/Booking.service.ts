@@ -37,7 +37,7 @@ export class BookingService {
     .pipe(
       map(bookings => bookings.map(b => b.id))
     );
-}
+  }
 
   deleteBooking(bookingId: string): Observable<void> {
     return this.http.delete<void>(`${this.api.BASE_URL}/bookings/${bookingId}`);
