@@ -20,8 +20,8 @@
                 <button class="confirm-btn" (click)="deleteTrip()">Yes</button>
                 <button class="cancel-btn" (click)="toDelete.set(false)">No</button>        
               </div>
-              @if(errorToDelete()) {
-                  <p class="error-message">{{ errorToDelete() }}</p>
+              @if(messageToDelete()) {
+                  <p class="error-message">{{ messageToDelete() }}</p>
                 }
           </div>
          }

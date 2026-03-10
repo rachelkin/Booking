@@ -25,9 +25,9 @@ export class Trip implements OnInit {
   errorMessage = signal<string>('');
 
   currentUser = this.userService.currentUser();
-  isTripRegistered = input<boolean>(false);
   messageUnsubscribe = signal<string>('');
   @Input() Invited : boolean = false;
+
 
   constructor(private router: Router) {}
 
@@ -48,6 +48,14 @@ export class Trip implements OnInit {
     });
   }
 
+  checkIfRegistered(): boolean {
+    this.bookingService.checkIfUserRegisteredToTrip(this.currentUser!.id, this.id)
+      .subscribe(isRegistered => {
+        return isRegistered;
+      });
+    return false;
+  }
+
   register(): void {
     this.errorMessage.set('');
     const people = this.numberOfPeople();
@@ -62,19 +70,22 @@ export class Trip implements OnInit {
       return;
     }
 
-    const tripId = this.route.snapshot.paramMap.get('id');
+    if(!this.checkIfRegistered()){
+      this.errorMessage.set('You are already registered for this trip.');
+      return;
+    }
+
+    const tripId = this.id;
     if (!tripId) return;
 
     const currentUser = this.userService.currentUser();
-    const userID = this.userService.currentUser()?.id;
     if (!currentUser) {
       this.errorMessage.set('Please login to register');
       return;
     }
 
     this.bookingService.getAllBookings().subscribe(bookings => {
-      const newId = String(bookings.length + 1);
-
+      const newId = String(bookings.length + 2);
       const newbooking = {
         id: newId,
         tripId: Number(tripId),
@@ -107,7 +118,7 @@ export class Trip implements OnInit {
               this.messageUnsubscribe.set('You have successfully unsubscribed from the trip');
               setTimeout(() => {
                 this.router.navigate(['home/myTrips']);
-              }, 3000); 
+              }, 2500); 
             },
             error: () => {
               this.messageUnsubscribe.set('Error unsubscribing from the trip, please try again later');

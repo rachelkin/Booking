@@ -20,7 +20,7 @@ export class TripCard {
   trip = input<Trip>();
   toDelete = signal<boolean>(false);
   deleted = output<string>();
-  errorToDelete = signal<string>('');
+  messageToDelete = signal<string>('');
   
   deleteTrip(){
    const id = this.trip()?.id;
@@ -32,7 +32,7 @@ export class TripCard {
           this.deleted.emit(id);
         });
       } else {
-        this.errorToDelete.set('Cannot delete trip with existing registrations.');
+        this.messageToDelete.set('Cannot delete trip with existing registrations.');
       }
     });
   }
