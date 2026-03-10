@@ -25,6 +25,6 @@ export class Home {
   
   logout() {
     this.userService.logout();
-    
+     this.router.navigate(['/login']);
   }
 }

@@ -16,11 +16,13 @@ export class TripCard {
   private tripService = inject(TripService);
   private bookingService = inject(BookingService);
   private router = inject(Router);
-  currentUser = this.userService.currentUser();
-  isAdmin = this.currentUser?.isAdmin;
-  trip = input<Trip>();
-  toDelete = signal<boolean>(false);
+
   deleted = output<string>();
+  trip = input<Trip>();
+
+  currentUser = this.userService.currentUser();
+  isAdmin = this.currentUser?.isAdmin; 
+  toDelete = signal<boolean>(false);
   messageToDelete = signal<string>('');
   messageToEdit = signal<string>('');
   

@@ -10,8 +10,6 @@ export class TripService {
   private api = inject(ApiService);
   private http = inject(HttpClient);
 
-
-
   getAllTrips(): Observable<Trip[]> {
     return this.http.get<Trip[]>(
       `${this.api.BASE_URL}/trips`

@@ -32,7 +32,7 @@
     <p class="error-message">{{ errorMessage() }}</p>
   }
   <div class="form-actions">
-    <button class="submit-btn" (click)="addOrEditTrip()">Add Trip</button>
+    <button class="submit-btn" (click)="addOrEditTrip()">{{id ? 'Edit' : 'Add'}} Trip</button>
     <button class="cancel-btn" (click)="cancel()">Cancel</button>
   </div>
 </div>

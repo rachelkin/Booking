@@ -5,15 +5,13 @@ import { Home } from './components/home/home';
 import { AllTrips } from './components/all-trips/all-trips';
 import { MyTrips } from './components/my-trips/my-trips';
 import { Trip } from './components/trip/trip';
-import { App } from './app';
 import { Error } from './components/error/error';
 import { Add_and_edit } from './components/add_and_edit/add_and_edit';
 
 export const routes: Routes = [
-    {path:'', component : App},
+    {path:'', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
-    
     {
         path: 'home',
         component: Home,
@@ -29,11 +27,7 @@ export const routes: Routes = [
             {
                 path: 'myTrips',
                 component: MyTrips
-            },
-            {
-                path: 'trip/:id',
-                component: Trip
-            } ,
+            },           
             {
                 path:'add_and_edit',
                 component:Add_and_edit 

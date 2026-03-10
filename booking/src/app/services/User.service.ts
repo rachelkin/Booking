@@ -21,15 +21,11 @@ export class UserService {
     this.loadCurrentUser();
   }
 
-  private loadCurrentUser() {
-    try {
+  private loadCurrentUser() { 
       const userJson = localStorage.getItem('user');
       if (userJson) {
         this.currentUser.set(JSON.parse(userJson));
       }
-    } catch (error) {
-      console.error('Failed to load current user:', error);
-    }
   }
 
   login(username: string, password: string): Observable<User[]> {
@@ -41,7 +37,6 @@ export class UserService {
   logout() {
     localStorage.removeItem('user');
     this.currentUser.set(null);
-    this.router.navigate(['/login']);
   }
 
   allUsers(): Observable<User[]> {

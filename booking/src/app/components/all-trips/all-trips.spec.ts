@@ -20,4 +20,5 @@ describe('AllTrips', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });

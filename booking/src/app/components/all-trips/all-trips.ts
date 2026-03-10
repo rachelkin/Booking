@@ -52,8 +52,6 @@ export class AllTrips implements OnInit {
   
   addTrip() {
     this.router.navigate(['/home/add_and_edit']);
-
-
   }
 
   onTripDeleted(deletedId: string) {

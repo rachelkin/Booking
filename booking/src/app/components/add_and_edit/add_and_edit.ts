@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TripService } from '../../services/Trip.service';
 import { BookingService } from '../../services/Booking.service';
@@ -14,12 +14,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Add_and_edit implements OnInit {
   private tripService = inject(TripService);
-  private bookingService = inject(BookingService);
   private location = inject(Location);
   private route = inject(ActivatedRoute);
 
-  tripId: string | null = null;
-
+  @Input() id !: string;
   name = signal<string>('');
   destination = signal<string>('');
   startDate = signal<string>('')  ;
@@ -29,14 +27,10 @@ export class Add_and_edit implements OnInit {
   image = signal<string>('');
   errorMessage = signal<string>('');
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      const id = params['id'];
-      if (id) {
-        this.tripId = id;
-        this.loadTripData(id);
+  ngOnInit() { 
+      if (this?.id) {
+        this.loadTripData(this?.id);
       }
-    });
   }
 
   loadTripData(id: string) {
@@ -55,6 +49,7 @@ export class Add_and_edit implements OnInit {
       }
     });
   }
+
   addOrEditTrip() {
     this.errorMessage.set('');
 
@@ -73,12 +68,13 @@ export class Add_and_edit implements OnInit {
       return;
     }
 
-    if (this.tripId) {
+    if (this?.id) {
       this.editTrip();
     }      
     else {
       this.addTrip();
     }
+    
   }
 
   addTrip() {
@@ -114,7 +110,7 @@ export class Add_and_edit implements OnInit {
 
   editTrip() {
       const updatedTrip: Trip = {
-            id: this.tripId!,
+            id: this.id,
             name: this.name(),
             destination: this.destination(),
             startDate: this.startDate(),
@@ -124,7 +120,7 @@ export class Add_and_edit implements OnInit {
             image: this.image()
           };
 
-          this.tripService.putTripByID(this.tripId!, updatedTrip).subscribe({
+          this.tripService.putTripByID(this.id, updatedTrip).subscribe({
             next: () => {
               this.location.back();
             },

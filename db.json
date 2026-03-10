@@ -303,23 +303,13 @@
     },
     {
       "id": "59",
-      "name": "KOREA",
+      "name": "KOREA.",
       "destination": "NORTH KOREA",
       "startDate": "2026-05-20",
       "endDate": "2026-06-28",
       "price": 7555,
       "description": "A crazy trip to Korea for the crazy and the insane",
       "image": "https://www.elal.com/magazine/wp-content/uploads/2017/01/ThinkstockPhotos-528063548.jpg"
-    },
-    {
-      "id": "21",
-      "name": "georgia",
-      "destination": "georgia;asia",
-      "startDate": "2026-05-20",
-      "endDate": "2026-05-28",
-      "price": 8555,
-      "description": "A crazy trip for girls only",
-      "image": "https://cdn.bunniktours.com.au/public/posts/images/Europe/Tbilisi%20-%201234016323-feature.jpg"
     },
     {
       "id": "21",
@@ -479,7 +469,7 @@
     },
     {
       "id": "26",
-      "tripId": 2,
+      "tripId": 4,
       "userId": 2,
       "people": 1
     }

@@ -36,7 +36,9 @@ export class Register {
           next: (data) => {
             if (data.length > 0) {
               this.errorMessage.set('המשתמש כבר קיים במערכת. מעבר לדף התחברות...');
-              this.router.navigate(['/login']);
+              setTimeout(() => {
+                this.router.navigate(['/login']);
+              }, 2000);         
             } else {
               this.userService.getAllUsers()
                 .subscribe({
@@ -57,7 +59,7 @@ export class Register {
                     this.successMessage.set('נרשמת בהצלחה! מעבר לדף הבית...');
                     localStorage.setItem('user', JSON.stringify(newUser));
                     this.userService.currentUser.set(newUser);
-                    this.router.navigate(['/home/allTrips']);
+                    this.router.navigate(['/home']);
                   },
                   error: (error) => {
                     console.error('Failed to get users:', error);
