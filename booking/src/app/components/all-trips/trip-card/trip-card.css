@@ -23,6 +23,7 @@
     border-radius: 20px;
     padding: 2px;
     background: linear-gradient(135deg, #ff1493, #00ffff, #ff1493);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
@@ -152,72 +153,4 @@
 .Admin_permissions button:hover {
     transform: scale(1.05);
     box-shadow: 0 0 30px rgba(255, 69, 0, 0.7);
-}
-/* הקופץ הקטן בתוך הכרטיס */
-.mini-popup {
-  position: absolute;
-  bottom: 20px; /* מתחת לכפתור Delete */
-  left: 50%;
-  transform: translateX(-50%) scale(0);
-  background: linear-gradient(135deg, rgba(100, 80, 160, 0.95), rgba(120, 100, 180, 0.95));
-  border: 2px solid rgba(255, 50, 180, 0.6);
-  border-radius: 15px;
-  padding: 12px 20px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(255, 50, 180, 0.5), 0 0 50px rgba(0, 255, 255, 0.3);
-  color: white;
-  animation: popupBounce 0.4s forwards;
-  z-index: 10;
-}
-
-/* אנימציה קטנה לקפיצה */
-@keyframes popupBounce {
-  0% { transform: translateX(-50%) scale(0); opacity: 0; }
-  60% { transform: translateX(-50%) scale(1.1); opacity: 1; }
-  100% { transform: translateX(-50%) scale(1); }
-}
-
-.mini-popup p {
-  margin: 0 0 8px 0;
-  font-weight: 600;
-  font-size: 0.9em;
-}
-
-.popup-actions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-/* כפתורים קטנים */
-.confirm-btn, .cancel-btn {
-  padding: 6px 12px;
-  border-radius: 25px;
-  font-size: 0.85em;
-  font-weight: 600;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* אישור – ורוד זוהר */
-.confirm-btn {
-  background: linear-gradient(135deg, #ff1493, #ff69b4);
-  color: white;
-  border: 2px solid rgba(255, 50, 180, 0.6);
-}
-.confirm-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(255, 50, 180, 0.8);
-}
-
-/* ביטול – תכלת זוהר */
-.cancel-btn {
-  background: linear-gradient(135deg, #00ffff, #00bfff);
-  color: white;
-  border: 2px solid rgba(0, 255, 255, 0.6);
-}
-.cancel-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
 }
