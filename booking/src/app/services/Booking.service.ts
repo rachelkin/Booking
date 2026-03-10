@@ -39,11 +39,8 @@ export class BookingService {
     return this.http.delete<void>(`${this.api.BASE_URL}/bookings/${bookingId}`);
   }
 
-  checkIfUserRegisteredToTrip(userId: string, tripId: string): Observable<boolean> {
+  checkIfUserRegisteredToTrip(userId: string, tripId: string): Observable<Booking[]> {
     return this.http.get<Booking[]>(`${this.api.BASE_URL}/bookings?userId=${userId}&tripId=${tripId}`)
-      .pipe(
-        map(bookings => bookings.length > 0)
-      );
   }
 
 }
