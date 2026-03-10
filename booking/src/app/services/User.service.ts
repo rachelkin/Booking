@@ -16,7 +16,6 @@ export class UserService {
   users = signal<User[]>([]);
   user = signal<User | null>(null);
   currentUser = signal<User | null>(null);
-  loginError = signal<string>('');
 
   constructor() {
     this.loadCurrentUser();
