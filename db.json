@@ -307,19 +307,19 @@
       "destination": "NORTH KOREA",
       "startDate": "2026-05-20",
       "endDate": "2026-06-28",
-      "price": 7555,
+      "price": 6666,
       "description": "A crazy trip to Korea for the crazy and the insane",
       "image": "https://www.elal.com/magazine/wp-content/uploads/2017/01/ThinkstockPhotos-528063548.jpg"
     },
     {
       "id": "21",
-      "name": "georgia",
-      "destination": "georgia;asia",
-      "startDate": "2026-05-20",
-      "endDate": "2026-05-28",
-      "price": 8555,
-      "description": "good trip",
-      "image": "https://cdn.bunniktours.com.au/public/posts/images/Europe/Tbilisi%20-%201234016323-feature.jpg"
+      "name": "ונציה",
+      "destination": "ונציה יפה",
+      "startDate": "2026-08-20",
+      "endDate": "2026-08-25",
+      "price": 16660,
+      "description": "גדנעדכגכעמסנ",
+      "image": ""
     }
   ],
   "bookings": [
@@ -470,6 +470,12 @@
     {
       "id": "26",
       "tripId": 4,
+      "userId": 2,
+      "people": 1
+    },
+    {
+      "id": "27",
+      "tripId": 3,
       "userId": 2,
       "people": 1
     }
